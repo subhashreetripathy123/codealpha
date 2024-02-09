@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Me</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/133249586b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="left">Contact Me</div>
+        <div class="right">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="contact-left">
+          <span class="purpleContact">Get in touch!</span><br /><br />
+          <div>
+            Feel free to reachout for any project-related inquiries and I'll
+            follow-up as soon as possible
+          </div>
+          <p><i class="fa-solid fa-envelope"></i> subhashreetripathy9438@gmail.com</p>
+          <p><i class="fa-solid fa-square-phone"></i> 6372036377</p>
+          <div class="social-icons">
+            <a
+              href="https://www.linkedin.com/in/subhashree-tripathy-181065290"
+              target="_blank"
+              ><img src="linkedin.png" alt="" class="image-top"
+            /></a>
+            <a
+             href="https://github.com/subhashreetripathy123" target="_blank"
+              ><img src="github.png" alt="" class="image-top"
+            /></a>
+            <a href="https://instagram.com/sambhav8493?igshid=OGQ5ZDc2ODk2ZA==" target="_blank"
+              ><img src="instagram.png" alt="" class="image-top"
+            /></a>
+          </div>
+        </div>
+        <div class="contact-right">
+          <form name="submit-to-google-sheet">
+            <input type="text" name="Name" placeholder="Your Name" required />
+            <input
+              type="email"
+              name="Email"
+              placeholder="Your Email"
+              required
+            />
+            <textarea
+              name="Message"
+              rows="6"
+              placeholder="Your Message"
+              required
+            ></textarea>
+            <button type="submit" class="btn btn2">Submit</button>
+          </form>
+          <span id="msg"></span>
+        </div>
+      </div>
+    </div>
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbyKVMcVJvsVwDUoRHK9N19Lpe3PGRtGuqhPdjPFFiB0XaTNe78H00hfZ1zRz49FcVfh/exec";
+      const form = document.forms["submit-to-google-sheet"];
+      const msg = document.getElementById("msg");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => {
+            msg.innerHTML =
+              "Message sent successfully. Will get back to you soon.";
+            setTimeout(function () {
+              msg.innerHTML = "";
+            }, 5000);
+            form.reset();
+          })
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker</title>
+  <style>
+    /* Basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    h1 {
+      text-align: center;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Expense Tracker</h1>
+    <form id="expenseForm">
+      <input type="text" id="expenseInput" placeholder="Enter expense">
+      <input type="number" id="amountInput" placeholder="Enter amount">
+      <button type="submit">Add Expense</button>
+    </form>
+    <ul id="expenseList"></ul>
+  </div>
+
+  <script>
+    // Get expense list from local storage or initialize as an empty array
+    let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+
+    // Function to render expenses
+    function renderExpenses() {
+      const expenseList = document.getElementById('expenseList');
+      expenseList.innerHTML = '';
+      expenses.forEach((expense, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>${expense.name} - $${expense.amount}</span>
+          <button onclick="editExpense(${index})">Edit</button>
+          <button onclick="deleteExpense(${index})">Delete</button>
+        `;
+        expenseList.appendChild(li);
+      });
+    }
+
+    // Function to add expense
+    function addExpense(event) {
+      event.preventDefault();
+      const expenseInput = document.getElementById('expenseInput');
+      const amountInput = document.getElementById('amountInput');
+      const name = expenseInput.value.trim();
+      const amount = parseFloat(amountInput.value.trim());
+
+      if (name && amount) {
+        expenses.push({ name, amount });
+        localStorage.setItem('expenses', JSON.stringify(expenses));
+        expenseInput.value = '';
+        amountInput.value = '';
+        renderExpenses();
+      }
+    }
+
+    // Function to edit expense
+    function editExpense(index) {
+      const newName = prompt('Enter new name:');
+      const newAmount = parseFloat(prompt('Enter new amount:'));
+
+      if (newName && newAmount) {
+        expenses[index] = { name: newName, amount: newAmount };
+        localStorage.setItem('expenses', JSON.stringify(expenses));
+        renderExpenses();
+      }
+    }
+
+    // Function to delete expense
+    function deleteExpense(index) {
+      expenses.splice(index, 1);
+      localStorage.setItem('expenses', JSON.stringify(expenses));
+      renderExpenses();
+    }
+
+    // Event listener for form submission
+    document.getElementById('expenseForm').addEventListener('submit', addExpense);
+
+    // Render expenses on page load
+    renderExpenses();
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      main {
+        margin: 0 23px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="left">Projects</div>
+        <div class="right">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contactme.html">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="secondSection">
+        <span class="text-gray">What I have done so far</span>
+        <br />
+        <span id="element"></span>
+        <div class="box">
+          <div class="vertical">
+            <img src="developer.png" alt="" class="image-top" />
+            <div class="vertical-title">ATM MACHINE PROJECT USING C LANGUAGE</div>
+            <div class="vertical-desc">      
+The ATM machine project implemented in the C language 
+efficiently manages financial transactions and user account information. <br />
+              
+            </div>
+          </div>
+          <div class="vertical">
+            <img src="developer.png" alt="" class="image-top" />
+            <div class="vertical-title">HOTEL MANAGEMENT SYSTEM </div>
+            <div class="vertical-desc">
+              A hotel management system, designed with HTML and CSS, offers an intuitive 
+              and visually appealing interface for efficient management of hotel operations.<br />
+              
+            </div>
+          </div>
+          <div class="vertical">
+            <img src="developer.png" alt="" class="image-top" />
+            <div class="vertical-title">PORTFOLIO WEBSITE</div>
+            <div class="vertical-desc">
+              Designed a Portfolio website using HTML, CSS, and JavaScript to
+              showcase my skills and projects.
+            </div>
+          </div>
+          <div class="vertical">
+            <img src="developer.png" alt="" class="image-top" />
+            <div class="vertical-title">NETFLIX CLONE</div>
+            <div class="vertical-desc">
+              Designed a clone for the popular OTT platform "Netflix" using
+              HTML, CSS, and JavaScript.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script>
+      var typed = new Typed("#element", {
+        strings: ["MY PROJECTS"],
+        typeSpeed: 50,
+      });
+    </script>
+  </body>
+</html>
